@@ -1,0 +1,78 @@
+name: "Flake - Validate"
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  nix-flake-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Configure SSH Key
+        env:
+          SSH_KEY: ${{ secrets.NIX_SECRETS_PRIVATE_KEY }}
+        run: |
+          # Create the .ssh directory safely
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
+          # Write the private key to a file and restrict permissions
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+          # Add the destination host to known_hosts to prevent interactive prompts
+          ssh-keyscan -H "github.com" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Install Nix
+        uses: DeterminateSystems/determinate-nix-action@v3
+
+      - name: Add Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v14
+
+      - name: Check Flake
+        run: nix flake check
+
+  nix-build-validate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        host:
+          #- andy-pc
+          #- andy-framework
+          - andy-vm
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Configure SSH Key
+        env:
+          SSH_KEY: ${{ secrets.NIX_SECRETS_PRIVATE_KEY }}
+        run: |
+          # Create the .ssh directory safely
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
+          # Write the private key to a file and restrict permissions
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+          # Add the destination host to known_hosts to prevent interactive prompts
+          ssh-keyscan -H "github.com" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Install Nix
+        uses: DeterminateSystems/determinate-nix-action@v3
+
+      - name: Add Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v14
+
+      - name: Dry Run Nix Build (${{ matrix.host }})
+        run: |
+          nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel --dry-run
