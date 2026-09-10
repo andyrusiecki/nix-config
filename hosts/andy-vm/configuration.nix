@@ -20,4 +20,16 @@
   # enable SPICE agent and QEMU guest agent for better VM integration (clipboard, resizing)
   services.spice-vdagentd.enable = true;
   services.qemuGuest.enable = true;
+
+  systemd.user.services.spice-vdagent-client = {
+    description = "spice-vdagent client";
+    wantedBy = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.spice-vdagent}/bin/spice-vdagent -x";
+      Restart = "on-failure";
+      RestartSec = "5";
+    };
+  };
+  
+  systemd.user.services.spice-vdagent-client.enable = lib.mkDefault true;
 }
