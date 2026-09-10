@@ -16,6 +16,7 @@
 
   # enable the SPICE guest webdav proxy daemon
   services.spice-webdavd.enable = true;
+  services.davfs2.enable = true;
 
   # enable SPICE agent and QEMU guest agent for better VM integration (clipboard, resizing)
   services.spice-vdagentd.enable = true;
