@@ -33,7 +33,7 @@ jobs:
         uses: DeterminateSystems/determinate-nix-action@v3
 
       - name: Add Nix Cache
-        uses: DeterminateSystems/magic-nix-cache-action@v14
+        uses: DeterminateSystems/magic-nix-cache-action@v15
 
       - name: Check Flake
         run: nix flake check
@@ -71,7 +71,7 @@ jobs:
         uses: DeterminateSystems/determinate-nix-action@v3
 
       - name: Add Nix Cache
-        uses: DeterminateSystems/magic-nix-cache-action@v14
+        uses: DeterminateSystems/magic-nix-cache-action@v15
 
       - name: Dry Run Nix Build (${{ matrix.host }})
         run: |
