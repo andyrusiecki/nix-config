@@ -71,6 +71,11 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Permitted Insecure Packages         
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-41.9.1"
+  ];
+
   system.stateVersion = "26.05";
 
   system.configurationRevision =
