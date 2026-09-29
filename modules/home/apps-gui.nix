@@ -10,6 +10,7 @@
     hunspellDicts.en_US # libreoffice spellcheck
     libreoffice-fresh
     nextcloud-client
+    opencloud-desktop
     pika-backup
     pods
     postman
@@ -36,11 +37,11 @@
       # in {
       #   "*".installation_mode = "blocked";
 
-      #   "uBlock0@raymondhill.net" = {
-      #     install_url       = moz "ublock-origin";
-      #     installation_mode = "force_installed";
-      #     updates_disabled  = true;
-      #   };
+        "uBlock0@raymondhill.net" = {
+          install_url       = moz "1password-x-password-manager";
+          installation_mode = "force_installed";
+          updates_disabled  = true;
+        };
 
       #   "{f3b4b962-34b4-4935-9eee-45b0bce58279}" = {
       #     install_url       = moz "animated-purple-moon-lake";
