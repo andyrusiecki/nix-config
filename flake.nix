@@ -10,55 +10,45 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+
     secrets = {
       url = "git+ssh://git@github.com/andyrusiecki/nix-secrets?ref=main&shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, secrets, ... }@inputs: {
-    nixosConfigurations = {
-      # "andy-pc" = nixpkgs.lib.nixosSystem {
-      #   system = "x86_64-linux";
-      #   specialArgs = { inherit inputs self; };
-      #   modules = [
-      #     ./hosts/andy-pc/configuration.nix
-      #     home-manager.nixosModules.home-manager
-      #     {
-      #       home-manager.extraSpecialArgs = { inherit inputs; };
-      #       home-manager.users.andy.imports = [ secrets.homeManagerModules.andy ];
-      #     }
-      #   ];
-      # };
-      # "andy-framework" = nixpkgs.lib.nixosSystem {
-      #   system = "x86_64-linux";
-      #   specialArgs = { inherit inputs self; };
-      #   modules = [
-      #     ./hosts/andy-framework/configuration.nix
-      #     home-manager.nixosModules.home-manager
-      #     nixos-hardware.nixosModules.framework-intel-core-ultra-series3
-      #     {
-      #       home-manager.extraSpecialArgs = { inherit inputs; };
-      #       home-manager.users.andy.imports = [ secrets.homeManagerModules.andy ];
-      #     }
-      #   ];
-      # };
-      "andy-vm" = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, secrets, ... }@inputs:
+    let
+      # shared pieces so each host doesn't repeat them
+      commonModules = [
+        sops-nix.nixosModules.sops
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs; };
+          home-manager.users.andy.imports = [ secrets.homeManagerModules.andy ];
+        }
+      ];
+
+      mkHost = name: extraModules: nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs self; };
-        modules = [
-          ./hosts/andy-vm/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.andy.imports = [ secrets.homeManagerModules.andy ];
-          }
-        ];
+        modules = [ ./hosts/${name}/configuration.nix ] ++ commonModules ++ extraModules;
+      };
+    in {
+      nixosConfigurations = {
+        # "andy-pc" = mkHost "andy-pc" [ ];
+        # "andy-framework" = mkHost "andy-framework" [
+        #   nixos-hardware.nixosModules.framework-intel-core-ultra-series3
+        # ];
+        "andy-vm" = mkHost "andy-vm" [ ];
       };
     };
-  };
 }
