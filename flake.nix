@@ -1,4 +1,3 @@
-# /etc/nixos/flake.nix
 {
   description = "nixos config";
 
@@ -10,11 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     secrets = {
@@ -23,11 +17,9 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-hardware, secrets, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-hardware, secrets, ... }@inputs:
     let
-      # shared pieces so each host doesn't repeat them
       commonModules = [
-        sops-nix.nixosModules.sops
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -44,11 +36,12 @@
       };
     in {
       nixosConfigurations = {
-        # "andy-pc" = mkHost "andy-pc" [ ];
+        # "andy-pc" = mkHost "andy-pc" [ secrets.nixosModules.andy-pc ];
         # "andy-framework" = mkHost "andy-framework" [
         #   nixos-hardware.nixosModules.framework-intel-core-ultra-series3
+        #   secrets.nixosModules.andy-framework
         # ];
-        "andy-vm" = mkHost "andy-vm" [ ];
+        "andy-vm" = mkHost "andy-vm" [ secrets.nixosModules.andy-vm ];
       };
     };
 }

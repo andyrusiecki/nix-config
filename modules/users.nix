@@ -20,7 +20,6 @@
     users.andy = {
       imports = [
         ./home
-        inputs.sops-nix.homeManagerModules.sops
       ];
     };
   };
