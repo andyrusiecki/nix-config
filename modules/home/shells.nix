@@ -110,8 +110,6 @@ in {
         unstage = "reset HEAD --";
       };
     };
-
-    # TODO: signing, includes
   };
 
   programs.grep.enable = true;

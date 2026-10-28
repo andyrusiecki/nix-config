@@ -20,7 +20,6 @@
     ./apps-tui.nix
     ./development.nix
     ./gnome.nix
-    ./secrets.nix
     ./shells.nix
   ];
 }

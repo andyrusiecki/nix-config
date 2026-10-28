@@ -15,14 +15,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sops-nix = {
-      url = "github:mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    my-secrets = {
+    secrets = {
       url = "git+ssh://git@github.com/andyrusiecki/nix-secrets?ref=main&shallow=1";
-      flake = false;
     };
   };
 
@@ -34,6 +28,10 @@
       #   modules = [
       #     ./hosts/andy-pc/configuration.nix
       #     home-manager.nixosModules.home-manager
+      #     {
+      #       home-manager.extraSpecialArgs = { inherit inputs; };
+      #       home-manager.users.andy.imports = [ secrets.homeManagerModules.andy ];
+      #     }
       #   ];
       # };
       # "andy-framework" = nixpkgs.lib.nixosSystem {
@@ -43,6 +41,10 @@
       #     ./hosts/andy-framework/configuration.nix
       #     home-manager.nixosModules.home-manager
       #     nixos-hardware.nixosModules.framework-intel-core-ultra-series3
+      #     {
+      #       home-manager.extraSpecialArgs = { inherit inputs; };
+      #       home-manager.users.andy.imports = [ secrets.homeManagerModules.andy ];
+      #     }
       #   ];
       # };
       "andy-vm" = nixpkgs.lib.nixosSystem {
@@ -51,6 +53,10 @@
         modules = [
           ./hosts/andy-vm/configuration.nix
           home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.users.andy.imports = [ secrets.homeManagerModules.andy ];
+          }
         ];
       };
     };

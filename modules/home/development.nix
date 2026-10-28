@@ -15,7 +15,6 @@
   programs.claude-code.enable = true;
   programs.go = {
     enable = true;
-    # TODO: GOPRIVATE
   };
   programs.npm.enable = true;
   programs.opencode.enable = true;
