@@ -84,10 +84,10 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1793287513,
-        "narHash": "sha256-/3e+PTqoHeG91OoAV7vOhy7ZxiosS/cXeAjbyRavt1o=",
+        "lastModified": 1793289089,
+        "narHash": "sha256-5wluJdg+H5vOuWV2fzOoN7nK8JtjnFrlR017yfUpyRE=",
         "ref": "main",
-        "rev": "ade3d784ffe6f936ce5248835369f9af68a070df",
+        "rev": "eff292ca248744189f6b4482f6d0554bb996ebb8",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/andyrusiecki/nix-secrets"
