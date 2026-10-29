@@ -17,6 +17,7 @@
     extraSpecialArgs = { inherit inputs; };
     useGlobalPkgs = true;
     useUserPackages = true;
+    backupFileExtension = "backup";
     users.andy = {
       imports = [
         ./home
