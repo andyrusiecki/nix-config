@@ -50,14 +50,14 @@
     autoPrune.enable = true;
 
   };
-  
+
   virtualisation.containers.registries.search = [ "docker.io" ];
   virtualisation.podman = {
     enable = true;
 
     autoPrune.enable = true;
-    dockerCompat = true;
-    dockerSocket.enable = true;
+    dockerCompat = false;
+    dockerSocket.enable = false;
     defaultNetwork.settings.dns_enabled = true;
   };
 }
