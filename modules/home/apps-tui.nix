@@ -12,8 +12,8 @@
   };
 
   programs.lazydocker.enable = true;
-  
-  programs.lazygit.enable = {
+
+  programs.lazygit = {
     enable = true;
 
     enableBashIntegration = true;
