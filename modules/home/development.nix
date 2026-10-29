@@ -3,16 +3,31 @@
 
 {
   home.packages = with pkgs; [
+    age
+    cryptomator-cli
+    docker-credential-helpers
     golangci-lint
+    kubetui
     nodejs
     opencode-desktop
+    php
     rustc
     rustfmt
     rust-analyzer
+    sops
+    ssh-to-age
   ];
 
   programs.cargo.enable = true;
   programs.claude-code.enable = true;
+
+  programs.docker-cli = {
+    enable = true;
+    settings = {
+      credsStore = "secretservice";
+    };
+  };
+
   programs.go = {
     enable = true;
   };

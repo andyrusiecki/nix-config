@@ -41,6 +41,16 @@
   # Virtualization
   programs.virt-manager.enable = true;
 
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+    autoPrune.enable = true;
+
+  };
+  
   virtualisation.containers.registries.search = [ "docker.io" ];
   virtualisation.podman = {
     enable = true;

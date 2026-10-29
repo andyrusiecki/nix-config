@@ -3,19 +3,20 @@
 
 {
   home.packages = with pkgs; [
-    _1password-gui
-    _1password-cli
+    apostrophe
+    cryptomator
+    gnome-boxes
     google-chrome
     hunspell # libreoffice spellcheck
     hunspellDicts.en_US # libreoffice spellcheck
     libreoffice-fresh
-    nextcloud-client
-    opencloud-desktop
     pika-backup
+    podman-desktop
     pods
     postman
     protonplus
     signal-desktop
+    slack
     spotify
   ];
 
@@ -197,6 +198,7 @@
     };
   };
 
+  services.nextcloud-client.enable = true;
   programs.obs-studio.enable = true;
 
   programs.obsidian = {

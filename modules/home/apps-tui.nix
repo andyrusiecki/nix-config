@@ -12,7 +12,14 @@
   };
 
   programs.lazydocker.enable = true;
+  
+  programs.lazygit.enable = {
+    enable = true;
 
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+    enableZshIntegration = true;
+  };
 
   programs.neovim = {
     enable = true;
