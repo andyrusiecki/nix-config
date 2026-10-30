@@ -79,11 +79,11 @@
 
     # Extensions
     "org/gnome/shell/extensions/appindicator".custom-icons = [
-      lib.gvariant.mkTuple [
+      (lib.gvariant.mkTuple [
         "Granola_status_icon_1"
         "/opt/granola/resources/icons/win-tray.ico"
         ""
-      ]
+      ])
     ];
 
     "org/gnome/shell/extensions/caffeine".nightlight-control = "always";
