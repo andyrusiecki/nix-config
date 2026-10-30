@@ -46,7 +46,8 @@ jobs:
         host:
           #- andy-pc
           #- andy-framework
-          - andy-vm
+          - andy-framework-vm
+          - andy-pc-vm
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
