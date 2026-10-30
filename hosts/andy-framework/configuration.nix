@@ -11,6 +11,10 @@
   # hostname
   networking.hostName = "andy-framework";
 
+  # auto login
+  services.displayManager.autoLogin.enable  = true;
+  services.displayManager.autoLogin.user = "andy";
+
   # hardware - intel cpu
   # hardware.cpu.intel.npu.enable = true;
 
@@ -19,5 +23,5 @@
   # ];
 
   # hardware - light sensor
-  # hardware.sensor.iio.enable = true;
+  hardware.sensor.iio.enable = true;
 }
