@@ -10,6 +10,7 @@
     hunspell # libreoffice spellcheck
     hunspellDicts.en_US # libreoffice spellcheck
     libreoffice-fresh
+    nextcloud-client
     pika-backup
     podman-desktop
     pods
@@ -198,7 +199,6 @@
     };
   };
 
-  services.nextcloud-client.enable = true;
   programs.obs-studio.enable = true;
 
   programs.obsidian = {
