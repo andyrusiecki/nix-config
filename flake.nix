@@ -41,7 +41,8 @@
         #   nixos-hardware.nixosModules.framework-intel-core-ultra-series3
         #   secrets.nixosModules.andy-framework
         # ];
-        "andy-vm" = mkHost "andy-vm" [ secrets.nixosModules.andy-vm ];
+        "andy-framework-vm" = mkHost "andy-framework-vm" [ secrets.nixosModules.andy-framework-vm ];
+	"andy-pc-vm" = mkHost "andy-pc-vm" [ secrets.nixosModules.andy-pc-vm ];
       };
     };
 }
