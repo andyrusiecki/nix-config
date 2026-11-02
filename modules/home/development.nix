@@ -9,17 +9,21 @@
     golangci-lint
     kubetui
     nodejs
-    opencode-desktop
     php
     rustc
     rustfmt
     rust-analyzer
     sops
     ssh-to-age
+
+    # from llm-agents
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode2
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode2-desktop
   ];
 
   programs.cargo.enable = true;
-  programs.claude-code.enable = true;
 
   programs.docker-cli = {
     enable = true;
@@ -32,7 +36,6 @@
     enable = true;
   };
   programs.npm.enable = true;
-  programs.opencode.enable = true;
   programs.yarn.enable = true;
 
   services.podman = {

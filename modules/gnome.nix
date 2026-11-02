@@ -5,6 +5,4 @@
   services.desktopManager.gnome.extraGSettingsOverrides = "";
 
   services.displayManager.gdm.enable = true;
-
-  # TODO: ensure xdg is setup
 }

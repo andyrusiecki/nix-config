@@ -209,7 +209,7 @@
   programs.prismlauncher.enable = true;
   programs.vscode.enable = true;
 
-  # TODO: move into apps or scripts section
+  # Fixing Steam game app icons
   home.activation.fixSteamIcons = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     for f in ~/.local/share/applications/*.desktop; do
       id=$(grep -Eo 'steam://rungameid/[0-9]+' "$f" | sed 's#.*/##') || true

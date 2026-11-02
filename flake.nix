@@ -11,6 +11,8 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
+    llm-agents.url = "github:numtide/llm-agents.nix";
+    
     secrets = {
       url = "git+ssh://git@github.com/andyrusiecki/nix-secrets?ref=main&shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
