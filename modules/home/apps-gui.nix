@@ -209,6 +209,9 @@
   programs.prismlauncher.enable = true;
   programs.vscode.enable = true;
 
+  # Custom mime type handlers
+  xdg.mimeApps.defaultApplications."x-scheme-handler/granola" = "granola.desktop";
+  
   # Fixing Steam game app icons
   home.activation.fixSteamIcons = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     for f in ~/.local/share/applications/*.desktop; do

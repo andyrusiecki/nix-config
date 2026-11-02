@@ -16,11 +16,14 @@
     sops
     ssh-to-age
 
-    # from llm-agents
+    # from llm-agents flake
     inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
     inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
     inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode2
     inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode2-desktop
+
+    # from granola flake
+    inputs.granola.packages.${pkgs.stdenv.hostPlatform.system}.granola
   ];
 
   programs.cargo.enable = true;

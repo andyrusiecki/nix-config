@@ -10,9 +10,9 @@
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-
     llm-agents.url = "github:numtide/llm-agents.nix";
-    
+    granola.url = "github:howird/granola-flake";
+
     secrets = {
       url = "git+ssh://git@github.com/andyrusiecki/nix-secrets?ref=main&shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
