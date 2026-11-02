@@ -1,5 +1,5 @@
 # /etc/nixos/modules/home/development.nix
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   home.packages = with pkgs; [
